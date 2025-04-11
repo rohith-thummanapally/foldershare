@@ -1,11 +1,8 @@
 import e from 'express';
-
+import { folderrouter } from './src/features/folderApis/folder.router.js';
+import { fileRouter } from './src/features/fileApis/file.router.js';
 const app=e();
-
-
-
-app.get('/',(req,res,next)=>{
-    console.log('server has started i think');
-    res.send('hi man, how are you?');
-})
+app.use(e.json());
+app.use('/api/folder',folderrouter);
+app.use('/api/file',fileRouter);
 export default app;

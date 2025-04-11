@@ -1,14 +1,15 @@
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 
-const db=mysql.createConnection({
+const db=await mysql.createConnection({
     'host':'localhost',
     'user':'root',
     'password':'',
-    'database':'foldershare'
+    'database':'foldershare',
+    'waitForConnections': true
 });
 
 
-db.connect(err=>{
+/*db.connect(err=>{
     if(err)
     {
         console.log('Database connection failed, please try again later');
@@ -17,6 +18,6 @@ db.connect(err=>{
     {
         console.log('Database connection is successfull.');
     }
-});
+});*/
 
 export default db;
