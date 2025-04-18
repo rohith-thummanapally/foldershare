@@ -79,7 +79,7 @@ export default function Filespage()
                 <p style={{fontSize:'1.7rem',fontWeight:'700'}}>
                     {filesList.length>0 ?
                         'Images in Album '.foldername
-                    : 'No Images Found in the Album'} 
+                    : 'No Images Found in the Album from master'} 
                 </p>
                 {!addfileview ?
                 <input type="button" style={{backgroundColor:'#0077ff1a',border:'2px solid #07f',borderRadius:'5px',color:'#07f',fontWeight:'700',padding:'5px 10px'}} onClick={()=>{toogleaddfile(!addfileview)}} value="Add Image"/>
