@@ -27,21 +27,28 @@ export const addfile=createAsyncThunk('addfile',
     async (args,thunkAPI)=>{
         try
         {
+            console.log('in add file thunk');
+            console.log(args);
             let name=args['name'];
             let fileurl=args['fileurl'];
+            let folderid=args['folderid'];
             let data=new FormData();
             data.append('name',name);
             data.append('fileurl',fileurl);
-            await fetch('http://localhost:3400/api/file/addfile',
-                {
+            data.append('folderid',folderid);
+            console.log(data);
+            await fetch('http://localhost:3400/api/file/addfile',{
                     method:'post',
                     body:data
                 }
             )
-            .then(res=>res.json)
+            .then(res=>res.json())
             .then(result=>{
-                thunkAPI.dispatch(fileactions.updatefolderfiles({'fileslist':result}))
+                console.log('in add file thunk result');
+                console.log(result);
+                thunkAPI.dispatch(folderfiles({'folderid':folderid}))
             })
+            
         }
         catch(err)
         {
@@ -49,6 +56,31 @@ export const addfile=createAsyncThunk('addfile',
         }
     }
 );
+
+export const deletefile=createAsyncThunk('deleteFile',
+    async (args,thunkAPI)=>{
+        try{
+            console.log(args);
+            let fileid=args['fileid'];
+            let folderid=args['folderid'];
+            let data=new FormData();
+            data.append('fileid',fileid);
+            console.log(data);
+            await fetch('http://localhost:3400/api/file/deletefile',{
+                method:'post',
+                body:data
+            })
+                .then(res=>res.json())
+                .then(result=>{
+                    console.log(result);
+                });
+            thunkAPI.dispatch(folderfiles({'folderid':folderid}))
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+})
 
 let inistate={folderid:null,foldername:'',filesList:[],selectedfile:null}
 const fileSlice=createSlice({

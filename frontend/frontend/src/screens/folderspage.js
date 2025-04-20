@@ -73,7 +73,7 @@ export default function Folderspage()
         <div style={{padding:'0px 12.5%',marginTop:'30px',minHeight:'30%',maxWidth:'100%'}}>
             <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
                 <p>
-                    Your Albums hi
+                    Your Albums
                 </p>
                 <input type="button" style={{}} onClick={()=>{toogleaddfolder(!showaddfolder)}} value="Add Album"/>
             </div>

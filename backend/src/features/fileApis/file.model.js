@@ -64,4 +64,16 @@ export default class fileModel
             console.log(err);
         }
     }
+
+    async deleteFile(fileid)
+    {
+        try{
+            let [data]=await db.query("delete from files where id= ?",[fileid] );
+            return data;
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
 }

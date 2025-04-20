@@ -12,6 +12,7 @@ export default class fileController
     {
         try{
             console.log('in add file controller');
+            console.log(req.body);
             let {name,fileurl,folderid}=req.body;
             let fileadded=await this.filemodelobj.addfile(name,fileurl,folderid);
             if(fileadded)
@@ -64,6 +65,28 @@ export default class fileController
             else
             {
                 return res.status(400).send({"msg":"Something went wrong , please try agian later"});
+            }
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+
+    async deleteFile(req,res,next)
+    {   
+        try{
+            console.log('in delete file controller');
+            console.log(req.body);
+            let fileid=req.body.fileid;
+            let file=await this.filemodelobj.deleteFile(fileid);
+            if(file)
+            {
+                return res.status(200).send({"msg":'file has been deleted Successfully'});
+            }
+            else
+            {
+                return res.status(400).send({"msg":"something Failed please try again Later"});
             }
         }
         catch(err)
